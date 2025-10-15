@@ -28,12 +28,14 @@ SELECT
 FROM E12_Vendas;
 
 SELECT
-	Produto,
+	Produto, Quantidade,
+    Preco_Unitario AS 'Preço Unitário',
+    Desconto,
     ROUND((Quantidade * Preco_Unitario) - Desconto,2) AS 'Valor Líquido'
 FROM E12_Vendas;
 
 SELECT
-	Produto,
+	Produto, Quantidade,
     ROUND(Preco_Unitario,0) AS 'Preço Arredondado',
     ROUND(Desconto,1) AS 'Desconto Arredondado',
     ROUND(Quantidade * Preco_Unitario,2) AS 'Valor Total'
@@ -48,7 +50,7 @@ FROM E12_Vendas
 GROUP BY Categoria;
 
 SELECT
-	Produto,
+	Produto, Desconto,
 	ROUND((Desconto / (Quantidade * Preco_Unitario)) * 100,2) AS 'Percentual de Desconto'
 FROM E12_Vendas;
 

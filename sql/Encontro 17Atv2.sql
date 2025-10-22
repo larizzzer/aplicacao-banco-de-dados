@@ -63,23 +63,23 @@ ON e.Id = l.Id_Editora  WHERE l.Id IS NULL
 ORDER BY e.Nome;
 
 -- 3. Mostrar livros que nunca foram emprestados
-SELECT l.Titulo AS 'Livro', l.Autor AS 'Autor', l.Ano_Publicacao AS 'Publicação'
+SELECT l.Titulo AS 'Livro', e.Status
 FROM E17_Livros AS l LEFT JOIN E17_Emprestimos AS e
 ON l.id = e.Id_Livro WHERE e.Id_Livro IS NULL;
 
 -- 4. Liste todos os emprestimos mostrando detalhes do livro emprestado
-SELECT l.Titulo AS 'Livro', l.Autor AS 'Autor', l.Ano_Publicacao AS 'Publicação', l.Genero AS 'Gênero', e.Data_Emprestimo AS 'Data do Empréstimo'
-FROM E17_Livros AS l JOIN E17_Emprestimos AS e 
-ON e.Id_Livro = l.Id;
+SELECT l.Titulo AS 'Livro', l.Autor, l.Ano_Publicacao AS 'Publicação', l.Genero AS 'Gênero', ed.Nome AS 'Editora', e.Status
+FROM E17_Livros AS l JOIN E17_Emprestimos AS e ON e.Id_Livro = l.Id INNER JOIN E17_Editoras AS ed 
+ON l.Id_Editora = ed.Id;
 
 -- 5. Mostre os livros mais populares (que possuem mais empréstimos)
-SELECT l.Titulo AS 'Livro', COUNT(e.Id_Livro) AS 'Quantidade de Empréstimos'
-FROM E17_Livros AS l LEFT JOIN E17_Emprestimos AS e
-ON l.Id = e.Id_Livro
-GROUP BY l.Titulo ORDER BY COUNT(e.Id_Livro) DESC, l.Titulo;
+SELECT l.Titulo AS 'Livro', l.Autor, COUNT(em.Id) AS Total_Emprestimo
+FROM E17_Livros As l LEFT JOIN E17_Emprestimos AS em
+ON l.Id = em.Id_Livro GROUP BY l.Titulo, l.Autor 
+ORDER By Total_Emprestimo DESC;
 
 -- 6. Liste empréstimos ativos com todos os detalhes do livro e editora
-SELECT l.*, ed.*, em.Id AS 'Id Empréstimo', em.Status AS 'Status'
+SELECT l.Titulo, l.Autor, l.Ano_Publicacao, l.Genero, ed.Nome, ed.Pais, ed.Fundacao, em.Status AS 'Status'
 FROM E17_Livros AS l JOIN E17_Editoras AS ed 
 ON ed.Id = l.Id_Editora JOIN E17_Emprestimos AS em 
 ON em.Id_Livro = l.Id WHERE em.Status = 'Ativo';
@@ -88,4 +88,4 @@ ON em.Id_Livro = l.Id WHERE em.Status = 'Ativo';
 SELECT e.Nome AS 'Editora', COUNT(l.Id) AS 'Quantidade de Livros'
 FROM E17_Livros AS l LEFT JOIN E17_Editoras AS e
 ON e.Id = l.Id_Editora
-GROUP BY l.Id_Editora;
+GROUP BY e.Nome ORDER BY COUNT(l.Id) DESC;

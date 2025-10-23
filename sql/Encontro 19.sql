@@ -10,4 +10,16 @@ SELECT * FROM Alunos;
 INSERT INTO Alunos(Nome, Idade, Curso)
 VALUES ('Robert Santos',26,'Banco de Dados'),
        ('João Da Silva',20,'C# Orientado a Objetos'),
-       ('Peter',26,'Gestão de Projetos ded TI');
+       ('Peter',26,'Gestão de Projetos de TI');
+
+UPDATE Alunos 
+SET Curso = 'Ciência de Dados' 
+WHERE Id = 2;
+
+UPDATE Alunos
+SET Idade = 24
+WHERE Id = 3;
+
+DELETE FROM Alunos WHERE Id = 3;
+
+SELECT * FROM MegaSena;

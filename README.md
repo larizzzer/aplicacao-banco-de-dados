@@ -17,7 +17,7 @@ O conteúdo de cada atividade/exercício é da minha **evolução ao longo do cu
 
 **Banco de Dados** MySQL
 
-**Ferramentas** MySQL Workbench 8.0, Power BI
+**Ferramentas** MySQL Workbench 8.0, Azure Data Studio, Power BI
 
 
 

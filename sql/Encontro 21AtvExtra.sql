@@ -6,7 +6,7 @@ SELECT
       Generation,
       Legendary
 FROM dbo.pokemon
-WHERE Generation = 3 OR Generation = 4 AND Legendary = 1;
+WHERE (Generation = 3 OR Generation = 4) AND Legendary = 1;
 
 -- Atividade 02: Pokemons que sejam do Tipo 1 Fogo (Fire)
 SELECT

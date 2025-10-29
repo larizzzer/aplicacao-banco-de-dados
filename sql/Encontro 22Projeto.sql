@@ -145,18 +145,21 @@ SELECT * FROM Comanda;
 SELECT * FROM Pagamento;
 SELECT * FROM Pedido;
 
+-- Atividade 01: Liste todos os clientes que fizeram reserva, mostrando nome, telefone e data/hora da reserva
 SELECT c.Nome AS 'Cliente', 
        c.Telefone AS 'Telefone', 
        r.Data_Hora_Reserva AS 'Data e Hora da Reserva'
 FROM Cliente c 
 INNER JOIN Reserva r ON c.Id = r.Id_Cliente;
 
+-- Atividade 02: Mostre todas as comandas com seus respectivos números de mesa e status da mesa
 SELECT c.Id AS 'Número da Comanda',
        m.Id AS 'Número da Mesa',
        c.Tipo AS 'Tipo da Comanda',
        m.Status AS 'Status da Mesa'
 FROM Mesa m INNER JOIN Comanda c ON m.Id = c.Id_Mesa;
 
+-- Atividade 03: Quais pedidos foram feitos na comanda 3? Mostre a descrição completa do cardápio pedido
 SELECT co.Id AS 'Número da Comanda',
        p.Id AS 'Número do Pedido',
        ca.Descricao AS 'Pedido'
@@ -164,3 +167,12 @@ FROM Comanda co INNER JOIN Pedido p
 ON co.Id = p.Id_Comanda INNER JOIN Cardapio ca ON ca.Id = p.Id_Cardapio
 WHERE co.Id = 3;
        
+-- Atividade 04: Liste todos os pagamentos feitos com cartão de crédito, mostrando o valor e número da mesa
+SELECT c.Id_Mesa AS 'Número da Mesa',
+       p.Valor AS 'Valor do Pagamento',
+       p.Forma_Pagamento AS 'Forma de Pagamento'
+FROM Comanda c INNER JOIN Pagamento p ON c.Id = p.Id_Comanda
+WHERE p.Forma_Pagamento = 'Cartão Crédito';
+
+
+

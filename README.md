@@ -15,7 +15,7 @@ O conteúdo de cada atividade/exercício é da minha **evolução ao longo do cu
 
 ## 🧩 Stack utilizada
 
-**Banco de Dados** MySQL
+**Banco de Dados** MySQL, T-SQL
 
 **Ferramentas** MySQL Workbench 8.0, Azure Data Studio, Power BI
 
